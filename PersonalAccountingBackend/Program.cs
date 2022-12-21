@@ -1,4 +1,5 @@
 using System.IO;
+using Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,8 @@ namespace PersonalAccountingBackend
             builder.Services.ConfigureCors();
             builder.Services.ConfigureIISIntegration();
             builder.Services.ConfigureLoggerService();
+            builder.Services.ConfigureRepositoryManager();
+            builder.Services.ConfigureSqlContext(builder.Configuration);
 
             builder.Services.AddControllers();
 
@@ -27,11 +30,10 @@ namespace PersonalAccountingBackend
 
             // Configure the HTTP request pipeline.
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
+            var logger = app.Services.GetRequiredService<ILoggerManager>();
+            app.ConfigureExceptionHandler(logger);
+
+            if (app.Environment.IsProduction())
             {
                 app.UseHsts();
             }

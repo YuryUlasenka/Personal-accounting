@@ -1,7 +1,9 @@
 ﻿using Contracts;
 using LoggerService;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 
 namespace PersonalAccountingBackend.Extensions
 {
@@ -28,6 +30,16 @@ namespace PersonalAccountingBackend.Extensions
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        }
+
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSqlServer<RepositoryContext>(configuration.GetConnectionString("sqlConnection"));
         }
     }
 }

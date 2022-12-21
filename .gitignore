@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,angular,visualstudio,visualstudiocode,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,angular,visualstudio,visualstudiocode,webstorm
 
+#Custom
+PersonalAccountingBackend/internal_logs/internallog.txt
+
 ### Angular ###
 ## Angular ##
 # compiled output
