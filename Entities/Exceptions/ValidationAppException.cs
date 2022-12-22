@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Entities.Exceptions
+{
+    public sealed class ValidationAppException : Exception
+    {
+        public IReadOnlyDictionary<string, string[]> Errors { get; }
+
+        public ValidationAppException(IReadOnlyDictionary<string, string[]> errors)
+            : base("One or more validation errors occured")
+        {
+            Errors = errors;
+        }
+    }
+}

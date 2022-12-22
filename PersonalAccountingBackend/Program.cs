@@ -1,5 +1,8 @@
 using System.IO;
+using Application.Behaviors;
 using Contracts;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +26,9 @@ namespace PersonalAccountingBackend
             builder.Services.ConfigureLoggerService();
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureSqlContext(builder.Configuration);
+            builder.Services.AddMediatR(typeof(Application.AssemblyReference).Assembly);
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            builder.Services.AddValidatorsFromAssembly(typeof(Application.AssemblyReference).Assembly);
 
             builder.Services.AddControllers();
 
