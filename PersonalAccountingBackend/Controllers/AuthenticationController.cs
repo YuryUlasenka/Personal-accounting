@@ -17,7 +17,7 @@ namespace PersonalAccountingBackend.Controllers
             _sender = sender;
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
             var result = await _sender.Send(new RegisterUserCommand(userForRegistration));
@@ -33,6 +33,14 @@ namespace PersonalAccountingBackend.Controllers
             }
 
             return StatusCode(201);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Authenticate([FromBody] UserLoginDto userLogin)
+        {
+            var result = await _sender.Send(new AuthenticateUserCommand(userLogin));
+
+            return Ok(new { Token = result });
         }
     }
 }

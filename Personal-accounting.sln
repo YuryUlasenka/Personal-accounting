@@ -7,17 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountingBackend",
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "PersonalAccountingWEB", "PersonalAccountingWEB\PersonalAccountingWEB.esproj", "{1A358588-3707-4E82-9625-BD4BD77655D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{D72132DD-10B1-4A22-B147-9AAE9A53EDB7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{81F0BE07-430D-411A-9A6C-6A8E41598CE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{81F0BE07-430D-411A-9A6C-6A8E41598CE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{1C0E3C36-5F31-4EE1-A4D8-240480E3481B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{5A115799-835B-4DA3-85D0-31C4CB98517D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{672B6EF6-0AB7-445F-83D7-CE607492607C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{672B6EF6-0AB7-445F-83D7-CE607492607C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{A370BF5A-5B4B-4A82-B331-1C7A351C687C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{A370BF5A-5B4B-4A82-B331-1C7A351C687C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{1A358588-3707-4E82-9625-BD4BD77655D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A358588-3707-4E82-9625-BD4BD77655D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A358588-3707-4E82-9625-BD4BD77655D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{D72132DD-10B1-4A22-B147-9AAE9A53EDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D72132DD-10B1-4A22-B147-9AAE9A53EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D72132DD-10B1-4A22-B147-9AAE9A53EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D72132DD-10B1-4A22-B147-9AAE9A53EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81F0BE07-430D-411A-9A6C-6A8E41598CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81F0BE07-430D-411A-9A6C-6A8E41598CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F0BE07-430D-411A-9A6C-6A8E41598CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU

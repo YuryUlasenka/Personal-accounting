@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using System.Text.Json;
-using Contracts;
 using Entities.ErrorModel;
 using Entities.Exceptions;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +25,7 @@ namespace PersonalAccountingBackend.Extensions
                     {
                         context.Response.StatusCode = contextFeature.Error switch
                         {
+                            UnauthorizedException => StatusCodes.Status401Unauthorized,
                             ValidationAppException => StatusCodes.Status422UnprocessableEntity,
                             _ => StatusCodes.Status500InternalServerError
                         };
@@ -40,7 +41,7 @@ namespace PersonalAccountingBackend.Extensions
                             await context.Response.WriteAsync(new ErrorDetails()
                             {
                                 StatusCode = context.Response.StatusCode,
-                                Message = "Internal Server Error.",
+                                Message = contextFeature.Error.Message,
                             }.ToString());
                         }
                     }

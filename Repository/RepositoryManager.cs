@@ -1,4 +1,4 @@
-﻿using Contracts;
+﻿using Repository.Interfaces;
 
 namespace Repository
 {

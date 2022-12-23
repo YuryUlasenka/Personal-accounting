@@ -33,7 +33,9 @@ namespace Repository
                 FirstName = "Admin",
                 LastName = "Adminych",
                 UserName = "admin",
+                NormalizedUserName = "ADMIN",
                 Email = "admin@test.com",
+                NormalizedEmail = "ADMIN@TEST.COM",
                 LockoutEnabled = false,
             };
 

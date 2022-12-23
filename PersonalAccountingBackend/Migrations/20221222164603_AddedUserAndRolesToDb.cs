@@ -24,7 +24,7 @@ namespace PersonalAccountingBackend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97", 0, "658b903d-8846-4a57-a859-f2d22a7faeb5", "admin@test.com", false, "Admin", "Adminych", false, null, null, null, "AQAAAAEAACcQAAAAELGWkQ2iR+rGgMUuQceLJbO94I4nQJVxo8+73DmT6CKKJU22NMPBTB2HwOL5vWOjIg==", null, false, "899599a3-2608-4c57-97b4-6d0addd9e7af", false, "admin" });
+                values: new object[] { "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97", 0, "658b903d-8846-4a57-a859-f2d22a7faeb5", "admin@test.com", false, "Admin", "Adminych", false, null, "ADMIN@TEST.COM", "ADMIN", "AQAAAAEAACcQAAAAELGWkQ2iR+rGgMUuQceLJbO94I4nQJVxo8+73DmT6CKKJU22NMPBTB2HwOL5vWOjIg==", null, false, "899599a3-2608-4c57-97b4-6d0addd9e7af", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

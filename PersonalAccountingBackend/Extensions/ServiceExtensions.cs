@@ -1,12 +1,19 @@
-﻿using Contracts;
+﻿using System;
+using System.Text;
 using Entities.Models;
 using FluentValidation;
-using LoggerService;
+using Infrastructure;
+using Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
+using Repository.Interfaces;
+using AuthenticationService = Infrastructure.AuthenticationService;
+using IAuthenticationService = Infrastructure.Interfaces.IAuthenticationService;
 
 namespace PersonalAccountingBackend.Extensions
 {
@@ -64,6 +71,38 @@ namespace PersonalAccountingBackend.Extensions
         {
             services.AddValidatorsFromAssembly(typeof(Application.AssemblyReference).Assembly);
             ValidatorOptions.Global.LanguageManager.Enabled = false;
+        }
+
+        public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtSettings = configuration.GetSection("JwtSettings");
+            var secretKey = Environment.GetEnvironmentVariable("SECRET");
+
+            services
+                .AddAuthentication(opt =>
+                {
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(opt =>
+                {
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = jwtSettings["validIssuer"],
+                        ValidAudience = jwtSettings["validAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                    };
+                });
+        }
+
+        public static void ConfigureAuthenticationService(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
         }
     }
 }
