@@ -25,6 +25,7 @@ namespace PersonalAccountingBackend.Extensions
                     {
                         context.Response.StatusCode = contextFeature.Error switch
                         {
+                            BadRequestException => StatusCodes.Status400BadRequest,
                             UnauthorizedException => StatusCodes.Status401Unauthorized,
                             ValidationAppException => StatusCodes.Status422UnprocessableEntity,
                             _ => StatusCodes.Status500InternalServerError

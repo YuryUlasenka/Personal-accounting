@@ -3,5 +3,5 @@ using Shared.DTOs;
 
 namespace Application.Commands
 {
-    public sealed record AuthenticateUserCommand(UserLoginDto UserLogin) : IRequest<string>;
+    public sealed record AuthenticateUserCommand(UserLoginDto UserLogin) : IRequest<TokenDto>;
 }

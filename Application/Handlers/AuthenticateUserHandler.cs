@@ -4,10 +4,11 @@ using Application.Commands;
 using Entities.Exceptions;
 using Infrastructure.Interfaces;
 using MediatR;
+using Shared.DTOs;
 
 namespace Application.Handlers
 {
-    internal sealed class AuthenticateUserHandler : IRequestHandler<AuthenticateUserCommand, string>
+    internal sealed class AuthenticateUserHandler : IRequestHandler<AuthenticateUserCommand, TokenDto>
     {
         private readonly IAuthenticationService _authenticationService;
 
@@ -16,14 +17,14 @@ namespace Application.Handlers
             _authenticationService = authenticationService;
         }
 
-        public async Task<string> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
+        public async Task<TokenDto> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
             if(!await _authenticationService.ValidateUser(request.UserLogin))
             {
                 throw new UnauthorizedException("Authentication failed. Wrong user name or password.");
             }
 
-            var result = await _authenticationService.CreateToken();
+            var result = await _authenticationService.CreateToken(populateExp: true);
 
             return result;
         }

@@ -40,7 +40,7 @@ namespace PersonalAccountingBackend.Controllers
         {
             var result = await _sender.Send(new AuthenticateUserCommand(userLogin));
 
-            return Ok(new { Token = result });
+            return Ok(result);
         }
     }
 }

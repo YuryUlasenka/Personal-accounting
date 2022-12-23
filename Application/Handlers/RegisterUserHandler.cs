@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.Commands;
 using AutoMapper;
 using Entities.Models;
+using Infrastructure.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -10,29 +11,20 @@ namespace Application.Handlers
 {
     internal sealed class RegisterUserHandler : IRequestHandler<RegisterUserCommand, IdentityResult>
     {
-        private const string BaseUserRole = "User";
-
         private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
+        private readonly IAuthenticationService _authenticationService;
 
-        public RegisterUserHandler(IMapper mapper, UserManager<User> userManager)
+        public RegisterUserHandler(IMapper mapper, IAuthenticationService authenticationService)
         {
             _mapper = mapper;
-            _userManager = userManager;
+            _authenticationService = authenticationService;
         }
 
         public async Task<IdentityResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = _mapper.Map<User>(request.UserForRegistration);
 
-            var result = await _userManager.CreateAsync(user, request.UserForRegistration.Password);
-
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, BaseUserRole);
-            }
-
-            return result;
+            return await _authenticationService.RegisterUser(user, request.UserForRegistration.Password);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,9 +12,11 @@ using Repository;
 namespace PersonalAccountingBackend.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20221223185524_AdditionalUserFieldsForRefreshToken")]
+    partial class AdditionalUserFieldsForRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +104,7 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97",
+                            Id = "86aac554-360c-4a6c-990b-fc0c205c744e",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "f719dc47-1f6f-4127-89de-a5d41780450d",
                             Email = "admin@test.com",
@@ -149,15 +152,15 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a0d313fd-db09-4746-bcb4-0b8ddc2365ec",
-                            ConcurrencyStamp = "d9b45cab-2f08-43ed-973f-948488fbb6c4",
+                            Id = "24f81ef2-e37f-4eca-bc00-5c4c542928b6",
+                            ConcurrencyStamp = "572b0af3-d2cd-4eee-8f86-847e70bef7b9",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "e811b5c0-f46c-4a5f-b59f-8c3e9d3ccc3f",
-                            ConcurrencyStamp = "d993cef9-be7e-49a5-a1f2-b3b0814dc368",
+                            Id = "fad6ed43-ea13-495d-9373-d0f01060178e",
+                            ConcurrencyStamp = "1a2326ef-324d-4fd2-9b90-38ba805cbc7b",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -252,8 +255,8 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97",
-                            RoleId = "a0d313fd-db09-4746-bcb4-0b8ddc2365ec"
+                            UserId = "86aac554-360c-4a6c-990b-fc0c205c744e",
+                            RoleId = "24f81ef2-e37f-4eca-bc00-5c4c542928b6"
                         });
                 });
 
