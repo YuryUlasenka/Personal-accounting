@@ -1,8 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<User>
     {
         public RepositoryContext(DbContextOptions options)
             : base(options)
@@ -11,9 +15,53 @@ namespace Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new ConfigurationClass())
+            base.OnModelCreating(modelBuilder);
+            CreateAdminUserAndBaseRoles(modelBuilder);
+
+            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
-        //public DbSet<Entity> Entities { get; set; }
+        private void CreateAdminUserAndBaseRoles(ModelBuilder builder)
+        {
+            var guidUser = Guid.NewGuid().ToString();
+            var guidAdminRole = Guid.NewGuid().ToString();
+            var guidUserRole = Guid.NewGuid().ToString();
+
+            var user = new User
+            {
+                Id = guidUser,
+                FirstName = "Admin",
+                LastName = "Adminych",
+                UserName = "admin",
+                Email = "admin@test.com",
+                LockoutEnabled = false,
+            };
+
+            var passwordHasher = new PasswordHasher<User>();
+            user.PasswordHash = passwordHasher.HashPassword(user, "123456");
+
+            builder.Entity<User>().HasData(user);
+
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = guidAdminRole,
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
+                },
+                new IdentityRole
+                {
+                    Id = guidUserRole,
+                    Name = "User",
+                    NormalizedName = "USER",
+                });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = guidAdminRole,
+                    UserId = guidUser,
+                });
+        }
     }
 }

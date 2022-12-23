@@ -26,9 +26,12 @@ namespace PersonalAccountingBackend
             builder.Services.ConfigureLoggerService();
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureSqlContext(builder.Configuration);
+            builder.Services.AddAuthentication();
+            builder.Services.ConfigureIdentity();
             builder.Services.AddMediatR(typeof(Application.AssemblyReference).Assembly);
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            builder.Services.AddValidatorsFromAssembly(typeof(Application.AssemblyReference).Assembly);
+            builder.Services.ConfigureFluentValidation();
+            builder.Services.AddAutoMapper(typeof(Application.AssemblyReference));
 
             builder.Services.AddControllers();
 
@@ -52,6 +55,7 @@ namespace PersonalAccountingBackend
             });
             app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             // Add custom middleware here
