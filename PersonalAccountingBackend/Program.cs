@@ -29,6 +29,7 @@ namespace PersonalAccountingBackend
             builder.Services.ConfigureAuthenticationService();
             builder.Services.ConfigureIdentity();
             builder.Services.ConfigureJWT(builder.Configuration);
+            builder.Services.AddJwtConfiguration(builder.Configuration);
             builder.Services.AddMediatR(typeof(Application.AssemblyReference).Assembly);
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             builder.Services.ConfigureFluentValidation();
