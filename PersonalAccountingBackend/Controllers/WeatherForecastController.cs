@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace PersonalAccountingBackend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/weatherforecast")]
     [Authorize]
     public class WeatherForecastController : ControllerBase
     {
