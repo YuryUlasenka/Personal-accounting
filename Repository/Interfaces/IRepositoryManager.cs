@@ -2,7 +2,7 @@
 {
     public interface IRepositoryManager
     {
-        //IEntityRepository Entity { get; }
+        IUserRepository UserRepository { get; }
         void Save();
     }
 }

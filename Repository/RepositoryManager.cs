@@ -1,19 +1,21 @@
-﻿using Repository.Interfaces;
+﻿using System;
+using Repository.Interfaces;
+using Repository.Repositories;
 
 namespace Repository
 {
     public sealed class RepositoryManager : IRepositoryManager
     {
         private readonly RepositoryContext _repositoryContext;
-        //private readonly Lazy<IEntityRepository> _entityRepository;
+        private readonly Lazy<IUserRepository> _userRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
-            //_entityRepository = new Lazy<IEntityRepository>(() => new EntityRepository(repositoryContext));
+            _userRepository = new Lazy<IUserRepository>(() => new UserRepository(repositoryContext));
         }
 
-        //public IEntityRepository Entity = _entityRepository.Value;
+        public IUserRepository UserRepository { get { return _userRepository.Value; } }
 
         public void Save()
         {
