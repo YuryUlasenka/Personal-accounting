@@ -33,7 +33,9 @@ export class LoginComponent {
         .subscribe({
           next: (response: AuthenticatedResponse) =>{
             const token = response.accessToken;
+            const refreshToken = response.refreshToken;
             localStorage.setItem("jwt", token);
+            localStorage.setItem("refreshToken", refreshToken)
             this.invalidLogin = false;
             this.router.navigate(['/']);
           },
