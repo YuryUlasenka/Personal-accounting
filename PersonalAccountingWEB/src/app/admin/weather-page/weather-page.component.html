@@ -1,4 +1,4 @@
-<h1>Administration page</h1>
+<h1>Weather page</h1>
 <p>
   <ngb-alert type="info" [dismissible]="false">
     <strong>Warning!</strong> there will be administration info.
@@ -9,7 +9,7 @@
 <table *ngIf="data" class="table table-bordered table-hover">
   <thead>
   <tr>
-    <th>Date</th>
+    <th>Date </th>
     <th>Temp. (C)</th>
     <th>Temp. (F)</th>
     <th>Summary</th>
@@ -17,7 +17,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let forecast of data">
-    <td>{{ forecast.date }}</td>
+    <td>{{ forecast.date | date: 'long'}}</td>
     <td>{{ forecast.temperatureC }}</td>
     <td>{{ forecast.temperatureF }}</td>
     <td>{{ forecast.summary }}</td>

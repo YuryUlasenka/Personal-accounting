@@ -1,18 +1,27 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { LoginComponent } from "./login/login.component";
-import { AdministrationComponent } from "./administration/administration.component";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
+import { MainLayoutComponent } from "./shared/components/main-layout/main-layout.component";
+import { LoginPageComponent } from "./login-page/login-page.component";
+import { HomePageComponent } from "./home-page/home-page.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'admin', component: AdministrationComponent, canActivate: [AuthGuard]}
-]
+  { path:'', component: MainLayoutComponent, children: [
+      { path: '', redirectTo: '/', pathMatch: 'full'},
+      { path: '', component: HomePageComponent },
+      { path: 'login', component: LoginPageComponent},
+      { path: 'admin',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./admin/admin.module').then(x => x.AdminModule)}
+      //{ path: 'admin', component: AdministrationComponent, canActivate: [AuthGuard]}
+    ]
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule{}

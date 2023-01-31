@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">PersonalAccounting</a>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapseNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/"
+             [routerLinkActiveOptions]="{exact: true}"
+             routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             href="#"
+             role="button"
+             routerLinkActive="active"
+             >Administration</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li>
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/admin/users">Users</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/admin/weather">Weather</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <button *ngIf="!isUserAuthenticated()"
+              routerLink="/login"
+              type="button"
+              class="btn btn-outline-warning">LogIn</button>
+      <div *ngIf="isUserAuthenticated()" class="navbar-nav dropdown me-1">
+        <a href="#" class="d-block link-light text-decoreation-none dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+          <img src="../../../../assets/images/user-image-with-black-background.png" alt="user-image" width="32" height="32" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" id="dropdown">
+          <li>
+            <span class="dropdown-item-text">UserName</span>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Preferences</a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logOut()">LogOut</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+      <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+

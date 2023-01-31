@@ -1,18 +1,18 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { LoginModel } from '../_interfaces/login.model';
 import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 import { AuthenticatedResponse } from '../_interfaces/authenticated-response.model';
-import { LoginModel } from "../_interfaces/login.model";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.css']
 })
-export class LoginComponent {
-  invalidLogin?: boolean;
-  credentials: LoginModel = {
+export class LoginPageComponent {
+    invalidLogin?: boolean;
+    credentials: LoginModel = {
     username: '',
     password: ''
   };

@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { AuthenticatedResponse } from "../_interfaces/authenticated-response.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate, CanActivateChild{
   constructor(
     private router: Router,
     private jwtHelper: JwtHelperService,
     private http: HttpClient) {  }
 
-   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     const token = localStorage.getItem("jwt");
 
     if(token && !this.jwtHelper.isTokenExpired(token)){
@@ -24,6 +24,10 @@ export class AuthGuard implements CanActivate{
     }
 
     return isRefreshSuccess;
+  }
+
+  async canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+    return this.canActivate(route, state);
   }
 
   private async tryRefreshingTokens(token: string): Promise<boolean>{
