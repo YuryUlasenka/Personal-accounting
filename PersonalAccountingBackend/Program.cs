@@ -25,6 +25,7 @@ namespace PersonalAccountingBackend
             builder.Services.ConfigureLoggerService();
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureSqlContext(builder.Configuration);
+            //builder.Services.ConfigurePostgre(builder.Configuration);
             builder.Services.AddAuthentication();
             builder.Services.ConfigureAuthenticationService();
             builder.Services.ConfigureIdentity();
@@ -43,6 +44,7 @@ namespace PersonalAccountingBackend
 
             var logger = app.Services.GetRequiredService<ILoggerManager>();
             app.ConfigureExceptionHandler(logger);
+            app.MigrateDatabase(logger);
 
             if (app.Environment.IsProduction())
             {

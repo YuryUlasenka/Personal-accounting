@@ -17,7 +17,7 @@ namespace PersonalAccountingBackend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -101,9 +101,9 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97",
+                            Id = "9c1b2278-a2e7-478c-ae51-9b46cf6e47c3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f719dc47-1f6f-4127-89de-a5d41780450d",
+                            ConcurrencyStamp = "755c79eb-fe5a-47a8-9fe8-3fe613bcacbf",
                             Email = "admin@test.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -111,10 +111,10 @@ namespace PersonalAccountingBackend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEANTErLK5hJbii4QkaSV7odiRBdlrQDxPfpPNtvITY8LLG6gCV740QKByTiEz5cpsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDRCTPFM51we0o0gsKvIBB9Si8vvsYfCGn64ecXNZQDrM/h5qql1zbk9gDQbCXErgA==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "95d9d4d7-b48e-47ab-a059-c5574e95c6ba",
+                            SecurityStamp = "94473af2-5dff-417b-b5f8-f2ca4b525a0f",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -149,15 +149,15 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a0d313fd-db09-4746-bcb4-0b8ddc2365ec",
-                            ConcurrencyStamp = "d9b45cab-2f08-43ed-973f-948488fbb6c4",
+                            Id = "fb8617c2-7248-4e5c-b658-69d5ab9dff04",
+                            ConcurrencyStamp = "fe5dce60-1516-42e7-a365-85fd23005091",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "e811b5c0-f46c-4a5f-b59f-8c3e9d3ccc3f",
-                            ConcurrencyStamp = "d993cef9-be7e-49a5-a1f2-b3b0814dc368",
+                            Id = "8dc0c15c-557c-4be8-8591-b616200fed88",
+                            ConcurrencyStamp = "716fd85c-7c08-4000-97be-e34dc3b962a9",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -252,8 +252,8 @@ namespace PersonalAccountingBackend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a966b9a5-41f9-4a4d-b994-4b5b0fbb3b97",
-                            RoleId = "a0d313fd-db09-4746-bcb4-0b8ddc2365ec"
+                            UserId = "9c1b2278-a2e7-478c-ae51-9b46cf6e47c3",
+                            RoleId = "fb8617c2-7248-4e5c-b658-69d5ab9dff04"
                         });
                 });
 

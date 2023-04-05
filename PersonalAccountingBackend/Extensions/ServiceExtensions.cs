@@ -8,6 +8,7 @@ using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -50,7 +51,17 @@ namespace PersonalAccountingBackend.Extensions
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSqlServer<RepositoryContext>(configuration.GetConnectionString("sqlConnection"));
+            services.AddSqlServer<RepositoryContext>(
+                configuration.GetConnectionString("sqlConnection"), 
+                x => x.MigrationsAssembly("PersonalAccountingBackend"));
+        }
+
+        public static void ConfigurePostgre(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddEntityFrameworkNpgsql().AddDbContext<RepositoryContext>(options =>
+            {
+                options.UseNpgsql(configuration.GetConnectionString("postgreConnection"));
+            });
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)
